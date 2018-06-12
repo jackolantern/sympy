@@ -18,6 +18,7 @@ from sympy.core.compatibility import range
 from sympy.printing import sstr, sstrrepr, StrPrinter
 from sympy.core.trace import Tr
 from sympy import MatrixSymbol
+from sympy.matrices import Transpose
 
 x, y, z, w, t = symbols('x,y,z,w,t')
 d = Dummy('d')
@@ -801,3 +802,8 @@ def test_MatrixSymbol_printing():
 
     assert str(A - A*B - B) == "-B - A*B + A"
     assert str(A*B - (A+B)) == "-(A + B) + A*B"
+
+
+def test_Transpose_printing():
+    A = MatrixSymbol('A', 3, 5)
+    assert str(Transpose(A)) == "A.T"
